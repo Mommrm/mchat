@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.mtalk.mapper.UserMapper">
+    <delete id="DeleteRelation">
+        Delete From user_relation
+        Where friendId = #{friendId} and userId = #{myId};
+    </delete>
+
+    <select id="SelectByUser" resultType="com.mtalk.entity.User">
+        select
+        userId,userName,userAvatar,userPassword,userBrief,userJoinTime
+        from user_info
+        where userName = #{userName} and userPassword = #{userPassword};
+    </select>
+
+    <select id="GetUserInfoById" resultType="com.mtalk.entity.User">
+        Select userName,userAvatar,userBrief
+        From user_info
+        Where userId = #{userId};
+    </select>
+    <select id="getUserById" resultType="com.mtalk.entity.User">
+        Select *
+        From user_info
+        Where userId = #{friendId};
+    </select>
+
+    <insert id="CreateUser">
+        Insert into user_info(userId,userName,userAvatar,userPassword,userBrief,userJoinTime)
+        values(#{userId},#{userName},#{userAvatar},#{userPassword},#{userBrief},#{userJoinTime});
+    </insert>
+
+
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.mtalk.mapper.RelationMapper">
+    <insert id="createRelation">
+        Insert into user_relation (friendId,userId,groupId,friendName,userName)
+        values(#{friendId},#{userId},#{groupId},#{friendName},#{userName});
+    </insert>
+
+    <select id="checkRelation" resultType="com.mtalk.entity.Relation">
+        Select friendId,userId,groupId
+        From user_relation
+        Where userId = #{userId} or friendId = #{userId};
+    </select>
+
+    <select id="GetFriendList" resultType="com.mtalk.entity.Relation">
+        Select friendId,friendName,groupId
+        From user_relation
+        Where userId = #{myId};
+    </select>
+    <select id="getGroupByUserId" resultType="java.lang.String">
+        Select groupId
+        From user_relation
+        Where friendId = #{friendId} and userId = #{userId};
+    </select>
+</mapper>
