@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.mtalk.mapper.GroupMapper">
+
+    <insert id="InsertGroup">
+        Insert Into group_info(groupId,groupName,groupLeader,leaderId,groupBrief,groupNum)
+        Values(#{groupId},#{groupName},#{groupLeader},#{leaderId},#{groupBrief},#{groupNum});
+    </insert>
+    <delete id="BrokeGroup">
+        Delete From group_info
+        Where groupId = #{groupId};
+    </delete>
+    <select id="SearchGroupById" resultType="com.mtalk.entity.ChatGroup">
+        Select groupId,groupName,groupLeader,leaderId,groupBrief,groupNum
+        From group_info
+        Where groupId = #{groupId};
+    </select>
+    <select id="SearchGroupByName" resultType="com.mtalk.entity.ChatGroup">
+        Select groupId,groupName,groupLeader,leaderId,groupBrief,groupNum
+        From group_info
+        Where groupName Like CONCAT('%' , #{searchName} , '%');
+    </select>
+</mapper>

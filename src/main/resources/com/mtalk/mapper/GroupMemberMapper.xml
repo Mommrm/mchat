@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mtalk.mapper.GroupMemberMapper">
+
+    <insert id="InsertMember">
+        Insert into group_member(groupId,memberId,memberType,memberName)
+        Values(#{groupId},#{memberId},#{memberType},#{memberName});
+    </insert>
+    <update id="ModifyMemberType">
+        Update group_member
+        Set memberType = #{memberType}
+        Where memberId = #{memberId};
+    </update>
+    <delete id="DeleteMember">
+        Delete From group_member
+        Where memberId = #{memberId};
+    </delete>
+    <select id="SearchMemberById" resultType="com.mtalk.entity.GroupMember">
+        Select memberId,memberType,memberName
+        From group_member
+        Where memberId = #{memberId};
+    </select>
+    <select id="SearchMemberByName" resultType="com.mtalk.entity.GroupMember">
+        Select memberId,memberType,memberName
+        From group_member
+        Where memberName Like CONCAT('%' , #{searchName} , '%');
+    </select>
+</mapper>
+
+

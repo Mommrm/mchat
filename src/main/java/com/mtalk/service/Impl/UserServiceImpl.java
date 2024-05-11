@@ -88,7 +88,7 @@ public class UserServiceImpl implements IUserService {
         // 同意请求把请求存入MySQL中
         // 无论是否同意，处理了都要把Redis中数据销毁，表明已经处理了该请求
         stringRedisTemplate.opsForHash().put(MESSAGE_FRIEND_KEY + userId,myId,message);
-        stringRedisTemplate.expire(MESSAGE_FRIEND_KEY + userId,MESSAGE_FRIEND_TIME,TimeUnit.DAYS);
+        stringRedisTemplate.expire(MESSAGE_FRIEND_KEY + userId, MESSAGE_CACHE_TIME,TimeUnit.DAYS);
         return new Result("消息发送成功");
     }
 

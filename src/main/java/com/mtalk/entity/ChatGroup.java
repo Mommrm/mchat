@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChatGroup {
-    private String channelGroupId;
-    private Integer groupId;
+    private String groupId;
     private String groupName;
     private String groupLeader;
     private String leaderId;
