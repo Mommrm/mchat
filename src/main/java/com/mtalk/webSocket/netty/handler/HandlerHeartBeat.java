@@ -1,4 +1,4 @@
-package com.mtalk.webSocket.netty.Handler;
+package com.mtalk.webSocket.netty.handler;
 
 import com.mtalk.webSocket.netty.utils.ChannelContextUtils;
 import io.netty.channel.Channel;

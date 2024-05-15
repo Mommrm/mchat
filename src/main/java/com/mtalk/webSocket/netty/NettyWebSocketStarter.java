@@ -1,7 +1,7 @@
 package com.mtalk.webSocket.netty;
 
-import com.mtalk.webSocket.netty.Handler.HandlerHeartBeat;
-import com.mtalk.webSocket.netty.Handler.HandlerWebSocket;
+import com.mtalk.webSocket.netty.handler.HandlerHeartBeat;
+import com.mtalk.webSocket.netty.handler.HandlerWebSocket;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;

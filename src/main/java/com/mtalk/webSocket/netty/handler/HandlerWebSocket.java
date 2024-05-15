@@ -1,19 +1,15 @@
-package com.mtalk.webSocket.netty.Handler;
+package com.mtalk.webSocket.netty.handler;
 
 import cn.hutool.json.JSONUtil;
 import com.mtalk.entity.User;
 import com.mtalk.webSocket.netty.utils.ChannelContextUtils;
-import com.mtalk.webSocket.netty.utils.SingleChatUtils;
 import com.mtalk.webSocket.netty.utils.UserChannelUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.channel.group.ChannelGroup;
-import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
-import io.netty.util.concurrent.GlobalEventExecutor;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

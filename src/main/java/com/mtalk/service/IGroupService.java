@@ -23,4 +23,8 @@ public interface IGroupService {
     Result GetInviteListByGroupId();
 
     Result HandleInvite(String groupId,String handleCode);
+
+    Result GetMySelfGroups();
+
+    Result ChanegGroupName(String newName,String groupId);
 }

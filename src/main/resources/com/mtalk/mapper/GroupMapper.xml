@@ -10,6 +10,11 @@
         Insert Into group_info(groupId,groupName,groupLeader,leaderId,groupBrief,groupNum)
         Values(#{groupId},#{groupName},#{groupLeader},#{leaderId},#{groupBrief},#{groupNum});
     </insert>
+    <update id="ChangeGroupName">
+        Update group_info
+        Set groupName = #{newName}
+        Where groupId = #{groupId};
+    </update>
     <delete id="BrokeGroup">
         Delete From group_info
         Where groupId = #{groupId};
@@ -29,4 +34,5 @@
         From group_info
         Where leaderId = #{leaderId};
     </select>
+
 </mapper>

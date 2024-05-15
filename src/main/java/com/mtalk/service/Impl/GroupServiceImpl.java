@@ -10,6 +10,7 @@ import com.mtalk.mapper.UserMapper;
 import com.mtalk.service.IGroupService;
 import com.mtalk.utils.LocalUser;
 import jakarta.annotation.Resource;
+import net.bytebuddy.asm.Advice;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -168,6 +169,10 @@ public class GroupServiceImpl implements IGroupService {
         // 获取当前登录用户的信息
         String myId = LocalUser.getLocalUser().getUserId();
         String myName = LocalUser.getLocalUser().getUserName();
+        String s = (String) stringRedisTemplate.opsForHash().get(INVITE_USER_KEY + myId, groupId);
+        if(s == null || s.isEmpty()){
+            return new Result("处理的邀请请求过期或错误的邀请请求",NOT_CODE);
+        }
         // 同意请求
         if(handleCode.equals("1")){
             GroupMember member = new GroupMember(groupId,NORMAL_MEMBER,myId,myName);
@@ -183,6 +188,31 @@ public class GroupServiceImpl implements IGroupService {
         return new Result("处理完毕");
     }
 
+    @Override
+    public Result GetMySelfGroups() {
+        String myId = LocalUser.getLocalUser().getUserId();
+        List<ChatGroup> myGroups = groupMemberMapper.GetGroupsByMemberId(myId);
+        return new Result(myGroups);
+    }
+    // 修改名称
+    @Override
+    public Result ChanegGroupName(String newName, String groupId) {
+        String myId = LocalUser.getLocalUser().getUserId();
+        if (!checkArg(groupId)) {
+            return new Result("未知错误",NOMAL_WORSE_CODE);
+        }
+        // 判断用户身份
+        String memberType = getMemberType(groupId,myId);
+        // 不是管理员或者群主
+        if (!memberType.equals(LEADER_MEMBER) || !memberType.equals(ADMIN_MEMBER)){
+            new Result("权限不足",NOT_POWER_CODE);
+        }
+        if (!groupMapper.ChangeGroupName(newName,groupId)) {
+            return new Result("修改失败",NOMAL_WORSE_CODE);
+        }
+        return new Result("修改成功,等待审核");
+    }
+
     private String createNumId(int length){
         Random random = new Random();
         StringBuilder sb = new StringBuilder();
@@ -196,6 +226,11 @@ public class GroupServiceImpl implements IGroupService {
         return sb.toString();
     }
 
+    /**
+     * 检测是否groupId已经有该群组 当前用户是否登录
+     * @param groupId
+     * @return
+     */
     private boolean checkArg(String groupId) {
         ChatGroup group = groupMapper.SearchGroupById(groupId);
         if(group == null){

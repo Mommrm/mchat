@@ -1,5 +1,6 @@
 package com.mtalk.mapper;
 
+import com.mtalk.entity.ChatGroup;
 import com.mtalk.entity.GroupMember;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -20,4 +21,6 @@ public interface GroupMemberMapper {
     List<GroupMember> SearchMemberByName(@Param("groupId") String groupId,@Param("searhName") String searhName);
 
     boolean BrokeGroup(@Param("groupId") String groupId);
+
+    List<ChatGroup> GetGroupsByMemberId(@Param("memberId") String memberId);
 }

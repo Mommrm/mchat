@@ -32,6 +32,11 @@
         From group_member
         Where memberName Like CONCAT('%' , #{searchName} , '%');
     </select>
+    <select id="GetGroupsByMemberId" resultType="com.mtalk.entity.ChatGroup">
+        Select group_member.groupId,groupName,groupLeader,leaderId,groupBrief,groupNum
+        From group_info,group_member
+        Where group_info.groupId = group_member.groupId and group_member.memberId = #{memberId};
+    </select>
 </mapper>
 
 

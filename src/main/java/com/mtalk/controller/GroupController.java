@@ -99,4 +99,18 @@ public class GroupController {
     public Result handleInvite(@RequestParam("groupId") String groupId,@RequestParam("handleCode")String handleCode){
         return groupService.HandleInvite(groupId,handleCode);
     }
+
+    /**
+     * 获取登录用户加入的所有群组
+     * @return
+     */
+    @GetMapping("user/list")
+    public Result getUserList(){
+        return groupService.GetMySelfGroups();
+    }
+
+    @PutMapping("change/name")
+    public Result changeGroupName(@RequestParam("newName")String newName,@RequestParam("groupId")String groupId){
+        return groupService.ChanegGroupName(newName,groupId);
+    }
 }
