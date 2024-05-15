@@ -14,9 +14,6 @@ import java.util.Map;
 @Component
 public class SingleChatUtils {
 
-    @Resource
-    private UserChannelUtil userChannelUtil;
-
     private static final Map<String, ChannelGroup> SingleGroup = new HashMap<>();
 
     public static ChannelGroup CreateSingleChat(String groupId){
@@ -42,7 +39,7 @@ public class SingleChatUtils {
         return channelGroup;
     }
 
-    public ChannelGroup GetGroupByGroupId(String groupId){
+    public static ChannelGroup GetGroupByGroupId(String groupId){
         ChannelGroup group = SingleGroup.get(groupId);
         return group;
     }

@@ -1,5 +1,6 @@
 package com.mtalk.controller;
 
+import com.mtalk.entity.GroupMessage;
 import com.mtalk.entity.Result;
 import com.mtalk.entity.SingleMessage;
 import com.mtalk.service.Impl.TalkServiceImpl;
@@ -25,7 +26,7 @@ public class TalkController {
     }
 
     /**
-     * 发送消息
+     * 发送消息(私聊)
      * @param singleMessage
      * @return
      */
@@ -34,5 +35,13 @@ public class TalkController {
         return talkServiceImpl.sentSingleMessage(singleMessage);
     }
 
-
+    /**
+     * 发送消息(群组)
+     * @param groupMessage
+     * @return
+     */
+    @PostMapping("sent/group/message")
+    public Result sentMessageToGroup(@RequestBody GroupMessage groupMessage){
+        return talkServiceImpl.sentGroupMessage(groupMessage);
+    }
 }

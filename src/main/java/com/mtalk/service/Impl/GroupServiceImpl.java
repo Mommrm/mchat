@@ -9,6 +9,7 @@ import com.mtalk.mapper.GroupMemberMapper;
 import com.mtalk.mapper.UserMapper;
 import com.mtalk.service.IGroupService;
 import com.mtalk.utils.LocalUser;
+import com.mtalk.webSocket.netty.utils.GroupChatUtils;
 import jakarta.annotation.Resource;
 import net.bytebuddy.asm.Advice;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -45,7 +46,8 @@ public class GroupServiceImpl implements IGroupService {
             return new Result("该用户未登录，不能创建群组", NOMAL_WORSE_CODE);
         }
         GroupMember groupMember = new GroupMember(groupId,LEADER_MEMBER, leaderId, chatGroup.getGroupLeader());
-
+        // 同时创建群聊通道 并把leader的Channel加入进去
+        GroupChatUtils.CreateGroupChat(groupId,leaderId);
         if(!groupMapper.InsertGroup(chatGroup) || !groupMemberMapper.InsertMember(groupMember)){
             return new Result("创建失败", REPEAT_CODE);
         }
