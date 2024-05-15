@@ -17,5 +17,5 @@ public interface GroupMapper {
 
     List<ChatGroup> SearchGroupByName(@Param("searchName") String searchName);
 
-
+    List<ChatGroup> SearchGroupByLeaderId(@Param("leaderId") String leaderId);
 }

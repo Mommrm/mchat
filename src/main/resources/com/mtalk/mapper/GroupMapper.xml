@@ -24,4 +24,9 @@
         From group_info
         Where groupName Like CONCAT('%' , #{searchName} , '%');
     </select>
+    <select id="SearchGroupByLeaderId" resultType="com.mtalk.entity.ChatGroup">
+        Select groupId,groupName,groupLeader,leaderId,groupBrief,groupNum
+        From group_info
+        Where leaderId = #{leaderId};
+    </select>
 </mapper>

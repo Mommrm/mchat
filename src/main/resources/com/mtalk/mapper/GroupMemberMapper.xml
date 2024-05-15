@@ -18,10 +18,14 @@
         Delete From group_member
         Where memberId = #{memberId};
     </delete>
+    <delete id="BrokeGroup">
+        Delete From group_member
+        Where groupId = #{groupId};
+    </delete>
     <select id="SearchMemberById" resultType="com.mtalk.entity.GroupMember">
         Select memberId,memberType,memberName
         From group_member
-        Where memberId = #{memberId};
+        Where groupId = #{groupId} and memberId = #{memberId};
     </select>
     <select id="SearchMemberByName" resultType="com.mtalk.entity.GroupMember">
         Select memberId,memberType,memberName

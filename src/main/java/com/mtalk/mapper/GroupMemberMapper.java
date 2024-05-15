@@ -15,7 +15,9 @@ public interface GroupMemberMapper {
 
     boolean ModifyMemberType(@Param("memberId") String memberId,@Param("memberType") String memberType);
 
-    GroupMember SearchMemberById(@Param("groupId") String groupId,@Param("userId") String userId);
+    GroupMember SearchMemberById(@Param("groupId") String groupId,@Param("memberId") String memberId);
 
     List<GroupMember> SearchMemberByName(@Param("groupId") String groupId,@Param("searhName") String searhName);
+
+    boolean BrokeGroup(@Param("groupId") String groupId);
 }

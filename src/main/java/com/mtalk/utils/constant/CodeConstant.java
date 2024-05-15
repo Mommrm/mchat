@@ -5,16 +5,15 @@ public class CodeConstant {
      * 1开头为用户相关
      */
 
-    // 不存在该用户
-    public static final String CODE_NOT_USER = "1000";
-    // 用户重复
-    public static final String CODE_REPEAT_USER = "1010";
-    // 数据库错误
-    public static final String CODE_ERROR_DATABASE = "1020";
-    // 用户id不存在
-    public static final String CODE_MIS_USERID = "1030";
 
     public static final String AGREE_FRIEND = "1";
 
     public static final String DISAGREE_FRIEND = "2";
+    public static final String RIGHT_DATA = "0";
+    public static final String NOT_CODE = "1";
+    public static final String REPEAT_CODE = "2";
+    public static final String WORSE_CODE = "3";
+
+    public static final String NOMAL_WORSE_CODE = "4"; //无法归类的通常错误
+    public static final String NOT_POWER_CODE = "5"; // 无权行为
 }

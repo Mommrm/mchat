@@ -45,11 +45,11 @@ public class UserServiceImpl implements IUserService {
         String token = RandomUtil.randomString(20);
         // 判断是否有重复用户名已经注册
         if(userMapper.SelectByUser(user.getUserName(),user.getUserPassword()) != null){
-            return new Result("该用户已经注册,请去登录!", CodeConstant.CODE_REPEAT_USER);
+            return new Result("该用户已经注册,请去登录!", CodeConstant.REPEAT_CODE);
         }
         // 创建用户并返回登录token，注册成功直接登录
         if (!createUser(user,token)) {
-            return new Result("注册失败!", CodeConstant.CODE_ERROR_DATABASE);
+            return new Result("注册失败!", CodeConstant.WORSE_CODE);
         }
         return new Result(token);
     }
@@ -67,7 +67,7 @@ public class UserServiceImpl implements IUserService {
             // 直接返回该token
             return new Result(token);
         }
-        return new Result("该用户未注册,请去注册后再试!", CodeConstant.CODE_NOT_USER);
+        return new Result("该用户未注册,请去注册后再试!", CodeConstant.NOT_CODE);
     }
 
     /**
@@ -80,9 +80,9 @@ public class UserServiceImpl implements IUserService {
     public Result AddFriend(String userId, String message) {
         String myId = LocalUser.getLocalUser().getUserId();
         if(userId == null || userId.isEmpty())
-            return new Result("userId不存在",CODE_MIS_USERID);
+            return new Result("userId不存在", NOT_CODE);
         if(myId == null || myId.isEmpty())
-            return new Result("myId不存在",CODE_MIS_USERID);
+            return new Result("myId不存在", NOT_CODE);
         // 存往Redis 保存7天
         // 对方id为Rediskey 自己id为发送请求key，值为请求消息 对方查找时可以通过自己id去查找好友申请
         // 同意请求把请求存入MySQL中
