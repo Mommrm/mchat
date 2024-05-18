@@ -46,7 +46,7 @@ public class GroupServiceImpl implements IGroupService {
             return new Result("该用户未登录，不能创建群组", NOMAL_WORSE_CODE);
         }
         GroupMember groupMember = new GroupMember(groupId,LEADER_MEMBER, leaderId, chatGroup.getGroupLeader());
-        // 同时创建群聊通道 并把leader的Channel加入进去
+        // 同时创建群聊通道 并把leader的Channel加入进去(前提是leader已经提前连接channel)
         GroupChatUtils.CreateGroupChat(groupId,leaderId);
         if(!groupMapper.InsertGroup(chatGroup) || !groupMemberMapper.InsertMember(groupMember)){
             return new Result("创建失败", REPEAT_CODE);
@@ -198,7 +198,7 @@ public class GroupServiceImpl implements IGroupService {
     }
     // 修改名称
     @Override
-    public Result ChanegGroupName(String newName, String groupId) {
+    public Result ChangeGroupName(String newName, String groupId) {
         String myId = LocalUser.getLocalUser().getUserId();
         if (!checkArg(groupId)) {
             return new Result("未知错误",NOMAL_WORSE_CODE);

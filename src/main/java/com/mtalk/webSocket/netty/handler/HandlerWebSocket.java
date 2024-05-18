@@ -45,7 +45,7 @@ public class HandlerWebSocket extends SimpleChannelInboundHandler<TextWebSocketF
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         // 断开连接时把channel和userId的绑定关系解除
         String userId = ChannelContextUtils.getUserId(ctx.channel());
-        UserChannelUtil.unbind(userId);
+        UserChannelUtil.unbind(userId,ctx.channel());
         logger.info("有连接断开......");
     }
 
@@ -73,6 +73,8 @@ public class HandlerWebSocket extends SimpleChannelInboundHandler<TextWebSocketF
 
             User user = JSONUtil.toBean(userJson, User.class);
             logger.info("{}建立连接成功",user.getUserName());
+
+
             // 绑定userId和对应channel对应的关系
             UserChannelUtil.bind(user.getUserId(),ctx.channel());
             // 每一个Channel保存着对应的userId

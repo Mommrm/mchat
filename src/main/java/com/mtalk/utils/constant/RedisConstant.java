@@ -9,9 +9,14 @@ public class RedisConstant {
     public static final String GROUP_APPLY_KEY = "group:apply:"; // 群组申请消息缓存
     public static final String INVITE_USER_KEY = "user:group:"; // 用户邀请消息缓存 只能根据用户ID来查看消息
 
+    public static final String CHAT_GROUP_KEY = "chat:group:history:";
+    public static final String CHAT_SINGLE_KEY = "chat:single:history:";
+
 
     // Time
     public static final long USER_CACHE_TIME = 7l;
     public static final long MESSAGE_CACHE_TIME = 7l;
     public static final long USER_MESSAGE_CACHE_TIME = 1l;
+
+    public static final long CHAT_CACHE_TIME = 1l;
 }

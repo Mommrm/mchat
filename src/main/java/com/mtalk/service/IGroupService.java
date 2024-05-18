@@ -26,5 +26,5 @@ public interface IGroupService {
 
     Result GetMySelfGroups();
 
-    Result ChanegGroupName(String newName,String groupId);
+    Result ChangeGroupName(String newName, String groupId);
 }

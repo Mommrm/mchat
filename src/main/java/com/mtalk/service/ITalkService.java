@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 public interface ITalkService {
     Result createSingleChat(String talkId);
 
-    Result createGroupChat(String groupId,String leaderId);
+    Result createGroupChat(String groupId);
     Result sentSingleMessage(SingleMessage singleMessage);
 
     Result sentGroupMessage(GroupMessage groupMessage);
+
+    Result getGroupHistory(String chatType,String groupId);
+    Result getSingleHistory(String chatType,String to);
 }

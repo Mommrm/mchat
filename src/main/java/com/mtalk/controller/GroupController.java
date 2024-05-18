@@ -111,6 +111,6 @@ public class GroupController {
 
     @PutMapping("change/name")
     public Result changeGroupName(@RequestParam("newName")String newName,@RequestParam("groupId")String groupId){
-        return groupService.ChanegGroupName(newName,groupId);
+        return groupService.ChangeGroupName(newName,groupId);
     }
 }

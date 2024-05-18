@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.mtalk.mapper.MessageMapper">
+    <insert id="InsertGroupHistory">
+        Insert Into message_history(messageId,groupId,message,messageType,senderName,senderId,sendTime,chatType)
+        Values (#{messageId},#{groupId},#{message},#{messageType},#{memberName},#{memberId},#{sendTime},#{chatType});
+    </insert>
+    <insert id="InsertSingleHistory">
+        Insert Into message_history(messageId,groupId,message,messageType,senderName,senderId,sendTime,chatType)
+        Values (#{messageId},#{groupId},#{message},#{messageType},#{senderName},#{from},#{sendTime},#{chatType});
+    </insert>
+
+    <select id="SearchHistoryByGroupId" resultType="com.mtalk.entity.Message">
+        <![CDATA[
+        Select messageId,groupId,message,messageType,senderName,senderId,sendTime,chatType
+        From message_history
+        Where chatType = #{chatType} and groupId = #{groupId} and sendTime < #{sendTime};
+        ]]>
+    </select>
+</mapper>

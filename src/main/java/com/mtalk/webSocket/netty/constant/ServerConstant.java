@@ -1,7 +1,7 @@
 package com.mtalk.webSocket.netty.constant;
 
 public class ServerConstant {
-    public static final int HEART_BEAT_TIME = 60 * 30; // 心跳时间 半个小时
+    public static final int HEART_BEAT_TIME = 60 * 30; // 心跳时间 半个小时(单位: 秒)
     public static final int HEART_WAIT_TIME = HEART_BEAT_TIME / 2; // 心跳时间 的一半
 
     public static final String WEBSOCKET_PATH = "/ws";
