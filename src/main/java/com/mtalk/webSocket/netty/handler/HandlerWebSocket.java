@@ -64,7 +64,6 @@ public class HandlerWebSocket extends SimpleChannelInboundHandler<TextWebSocketF
             }
             String userJson = stringRedisTemplate.opsForValue().get(USER_CACHE_KEY + token);
             // 该用户没有登录 (无需判断此用户是否存在，因为能发起聊天建立请求的一定是登录过的用户,伪造或者没有登录的都不能建立)
-
             if(userJson == null || userJson.isEmpty() ){
                 logger.info("没有该用户");
                 ctx.channel().close();

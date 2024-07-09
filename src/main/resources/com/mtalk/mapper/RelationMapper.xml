@@ -17,9 +17,9 @@
     </select>
 
     <select id="GetFriendList" resultType="com.mtalk.entity.Relation">
-        Select friendId,friendName,groupId
-        From user_relation
-        Where userId = #{myId};
+        Select friendId,friendName,groupId,userAvatar
+        From user_relation,user_info
+        Where user_relation.userId = #{myId} and user_relation.userId = user_info.userId;
     </select>
     <select id="getGroupByUserId" resultType="java.lang.String">
         Select groupId

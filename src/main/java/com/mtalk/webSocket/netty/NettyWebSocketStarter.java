@@ -31,6 +31,11 @@ public class NettyWebSocketStarter {
 
     private static EventLoopGroup workGroup = new NioEventLoopGroup();
 
+    @Resource
+    private HandlerWebSocket handlerWebSocket;
+    @Resource
+    private HandlerHeartBeat handlerHeartBeat;
+
     @PreDestroy
     public void close(){
         bossGroup.shutdownGracefully();
@@ -38,10 +43,6 @@ public class NettyWebSocketStarter {
         logger.info("已经关闭Netty服务器");
     }
 
-    @Resource
-    private HandlerWebSocket handlerWebSocket;
-    @Resource
-    private HandlerHeartBeat handlerHeartBeat;
     // 启动Netty服务器入口 异步启动
     public void startNetty(){
         try{

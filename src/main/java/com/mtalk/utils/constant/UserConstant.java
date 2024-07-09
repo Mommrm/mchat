@@ -7,6 +7,8 @@ public class UserConstant {
     public static final String DEFAULT_AVATAR_PATH = "../../../resources/images/avatars/defaultAvatar.jpg";
     public static final String USER_BRIEF = "默认签名";
 
+    public static final String USER_AVATAR = "src/assets/images/defaultAvatar.jpg";
+
     public static Timestamp getJoinTime(){
         return Timestamp.valueOf(LocalDateTime.now());
     }

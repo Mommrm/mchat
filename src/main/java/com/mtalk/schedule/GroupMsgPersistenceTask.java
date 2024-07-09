@@ -43,7 +43,6 @@ public class GroupMsgPersistenceTask {
             GroupMessage groupMessage = JSONUtil.toBean((String) messageJson, GroupMessage.class);
             logger.info("sendTime: {} groupMessage: {}", sendTime,groupMessage);
             messageMapper.InsertGroupHistory(groupMessage);
-
             // 持久化之后删除Redis缓存的值
             stringRedisTemplate.opsForHash().delete(CHAT_GROUP_KEY + groupId,sendTime);
         });

@@ -21,7 +21,8 @@ public class UserController {
     //TODO 注册用户
     @PostMapping("register")
     public Result RegisterUser(@RequestBody User user){
-           return userServiceImpl.RegisterUser(user);
+        System.out.println(user);
+        return userServiceImpl.RegisterUser(user);
     }
 
     //TODO 登录用户

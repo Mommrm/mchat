@@ -23,7 +23,7 @@
         Where userId = #{userId};
     </select>
     <select id="getUserById" resultType="com.mtalk.entity.User">
-        Select *
+        Select userId,userName,userAvatar,userBrief,userJoinTime
         From user_info
         Where userId = #{friendId};
     </select>

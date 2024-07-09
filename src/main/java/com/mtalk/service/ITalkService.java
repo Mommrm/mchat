@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface ITalkService {
+    // 任务接口
+
     Result createSingleChat(String talkId);
 
     Result createGroupChat(String groupId);

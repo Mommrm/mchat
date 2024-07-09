@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class GroupChatUtils {
     private static final Logger logger = LoggerFactory.getLogger(GroupChatUtils.class);

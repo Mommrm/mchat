@@ -61,6 +61,7 @@ public class UserServiceImpl implements IUserService {
         // 去数据库查找
         User user = userMapper.SelectByUser(userName,userPassword);
         if (user != null) {
+            LocalUser.setLocalUser(user);
             //查找出用户,Redis进行缓存
             String json = JSONUtil.toJsonStr(user);
             stringRedisTemplate.opsForValue().set(USER_CACHE_KEY + token,json,USER_CACHE_TIME, TimeUnit.DAYS);
@@ -179,6 +180,7 @@ public class UserServiceImpl implements IUserService {
         String userJson = JSONUtil.toJsonStr(user);
         // 创建用户保存登录状态 执行需要登录的请求时可以根据token拿取用户信息
         stringRedisTemplate.opsForValue().set(USER_CACHE_KEY + token,userJson,USER_CACHE_TIME, TimeUnit.DAYS);
+        userMapper.CreateUser(user);
         return true;
     }
     // 双向建立好友关系 发起人是userId 接收者是friendId，对于接收者也是userId，发起人是friendId 对应的Name也是如此
@@ -190,7 +192,8 @@ public class UserServiceImpl implements IUserService {
                 relation.getFriendName(),
                 relation.getFriendId(),
                 groupId,
-                relation.getHandleCode()
+                relation.getHandleCode(),
+                USER_AVATAR
                 );
 
         relationMapper.createRelation(relation); // groupId 是 发起人和接收者的拼接

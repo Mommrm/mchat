@@ -27,7 +27,6 @@ public class ChannelGroupUtil {
         groups.put(groupId,group);
         return groupId;
     }
-
     // 获取对应的ChannelGroup
     public ChannelGroup getChannelGroup(String groupId){
         return groups.get(groupId);
